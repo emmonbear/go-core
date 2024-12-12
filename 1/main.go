@@ -22,7 +22,7 @@ func (v *Values) String() string {
 			"var pi %T = %.2f\t// Тип float64\n"+
 			"var name %T = %s\t// Тип string\n"+
 			"var isActive %T = %t\t// Тип bool\n"+
-			"var complexNum %T = %g\t// Тип complex64\n",
+			"var complexNum %T = %g\t// Тип complex64",
 		v.numDecimal, v.numDecimal,
 		v.numOctal, v.numOctal,
 		v.numHexadecimal, v.numHexadecimal,
@@ -45,6 +45,11 @@ func (v *Values) ValuesToString() string {
 	)
 }
 
+func (v *Values) ValuesToRune() []rune {
+	return []rune(v.ValuesToString())
+}
+
+
 func main() {
 	val := Values{
 		numDecimal:     42,
@@ -61,4 +66,10 @@ func main() {
 	res := val.ValuesToString()
 
 	fmt.Println(res)
+
+	r := val.ValuesToRune()
+
+	for _, rr := range r {
+		fmt.Printf("%d,", rr)
+	}
 }
