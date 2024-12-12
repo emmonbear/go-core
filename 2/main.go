@@ -18,7 +18,19 @@ func GenerateNewSlice(length int) []int {
 	return slice
 }
 
+func SliceExample(slice []int) []int {
+	var evenSlice []int
+	for _, num := range slice {
+		if num%2 == 0 {
+			evenSlice = append(evenSlice, num)
+		}
+	}
+	return evenSlice
+}
+
 func main() {
 	originalSlice := GenerateNewSlice(10)
+	slice := SliceExample(originalSlice)
 	fmt.Println("Original slice: ", originalSlice)
+	fmt.Println("Slice slice: ", slice)
 }
