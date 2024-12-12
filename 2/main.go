@@ -6,6 +6,15 @@ import (
 	"time"
 )
 
+// GenerateNewSlice creates a slice of random integers with the specified length.
+// Each integer is randomly generated in the range [0, 100).
+// The randomness is seeded with the current Unix timestamp to ensure different results on each execution.
+//
+// Parameters:
+// - length: The length of the slice to be generated.
+//
+// Returns:
+// - A slice of integers with random values.
 func GenerateNewSlice(length int) []int {
 	gen := rand.New(rand.NewSource(time.Now().Unix()))
 
@@ -18,6 +27,13 @@ func GenerateNewSlice(length int) []int {
 	return slice
 }
 
+// SliceExample filters the input slice to return a new slice containing only even integers.
+//
+// Parameters:
+// - slice: The input slice to be filtered.
+//
+// Returns:
+// - A new slice containing only even integers from the input slice.
 func SliceExample(slice []int) []int {
 	var evenSlice []int
 	for _, num := range slice {
@@ -28,6 +44,15 @@ func SliceExample(slice []int) []int {
 	return evenSlice
 }
 
+// AppendInt appends multiple integers to the end of the slice, ensuring the slice has enough capacity.
+// If necessary, it creates a new slice with increased capacity to accommodate the new elements.
+//
+// Parameters:
+// - slice: The original slice to which the elements will be added.
+// - elems: The integers to be added to the slice.
+//
+// Returns:
+// - A new slice with the added integers.
 func AppendInt(slice []int, elems ...int) []int {
 	sliceLen := len(slice)
 	newLen := sliceLen + len(elems)
