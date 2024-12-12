@@ -5,16 +5,18 @@ import (
 	"fmt"
 )
 
+// Values represents a collection of diverse data types.
 type Values struct {
-	numDecimal     int
-	numOctal       int
-	numHexadecimal int
-	pi             float64
-	name           string
-	isActive       bool
-	complexNum     complex64
+	numDecimal     int       // Decimal integer value
+	numOctal       int       // Octal integer value
+	numHexadecimal int       // Hexadecimal integer value
+	pi             float64   // Floating-point value
+	name           string    // String value
+	isActive       bool      // Boolean flag
+	complexNum     complex64 // Complex number
 }
 
+// salt is a predefined string used for enhancing hash security.
 const salt = "go-2024"
 
 func (v *Values) String() string {
@@ -36,6 +38,7 @@ func (v *Values) String() string {
 	)
 }
 
+// ValuesToString concatenates all fields of Values into a single string.
 func (v *Values) ValuesToString() string {
 	return fmt.Sprintf("%d%d%d%.2f%s%t%g",
 		v.numDecimal,
@@ -48,10 +51,12 @@ func (v *Values) ValuesToString() string {
 	)
 }
 
+// ValuesToRune converts the concatenated string to a rune slice.
 func (v *Values) ValuesToRune() []rune {
 	return []rune(v.ValuesToString())
 }
 
+// HashWithSalt generates a SHA256 hash of Values with salt inserted midway.
 func (v *Values) HashWithSalt() string {
 	runes := v.ValuesToRune()
 	saltRune := []rune(salt)
