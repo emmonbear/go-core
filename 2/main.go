@@ -28,9 +28,30 @@ func SliceExample(slice []int) []int {
 	return evenSlice
 }
 
+func AppendInt(slice []int, elems ...int) []int {
+	sliceLen := len(slice)
+	newLen := sliceLen + len(elems)
+
+	if newLen > cap(slice) {
+		newCap := newLen
+		if newCap < cap(slice)*2 {
+			newCap = 2 * cap(slice)
+		}
+		newSlice := make([]int, newLen, newCap)
+		copy(newSlice, slice)
+		slice = newSlice
+	}
+
+	copy(slice[sliceLen:], elems)
+
+	return slice[:newLen]
+}
+
 func main() {
 	originalSlice := GenerateNewSlice(10)
 	slice := SliceExample(originalSlice)
 	fmt.Println("Original slice: ", originalSlice)
 	fmt.Println("Slice slice: ", slice)
+	add := AppendInt(slice, 1, 2, 3, 4)
+	fmt.Println("Add: ", add)
 }
