@@ -19,7 +19,7 @@ func (v *Values) String() string {
 		"var numDecimal %T = %d\t// Десятичная система\n"+
 			"var numOctal %T = %d\t// Восьмеричная система\n"+
 			"var numHexadecimal %T = %d\t// Шестнадцатиричная система\n"+
-			"var pi %T = %f\t// Тип float64\n"+
+			"var pi %T = %.2f\t// Тип float64\n"+
 			"var name %T = %s\t// Тип string\n"+
 			"var isActive %T = %t\t// Тип bool\n"+
 			"var complexNum %T = %g\t// Тип complex64\n",
@@ -30,6 +30,18 @@ func (v *Values) String() string {
 		v.name, v.name,
 		v.isActive, v.isActive,
 		v.complexNum, v.complexNum,
+	)
+}
+
+func (v *Values) ValuesToString() string {
+	return fmt.Sprintf("%d%d%d%.2f%s%t%g",
+		v.numDecimal,
+		v.numOctal,
+		v.numHexadecimal,
+		v.pi,
+		v.name,
+		v.isActive,
+		v.complexNum,
 	)
 }
 
@@ -46,4 +58,7 @@ func main() {
 
 	fmt.Println(&val)
 
+	res := val.ValuesToString()
+
+	fmt.Println(res)
 }
