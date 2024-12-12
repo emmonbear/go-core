@@ -10,10 +10,23 @@ All notable changes to this project will be documented in this file.
 - *(ex1)* Add structure conversion to string type
 - *(ex1)* Add a method for converting a string to a rune
 - *(ex1)* Add a rune hashing function
+- *(ex2)* Add a function that generates a slice of a given size with arbitrary values
+- *(ex2)* Add a function that returns a new slice containing only even values
+- *(ex2)* Add your own implementation of the append function
+
+### 🐛 Bug Fixes
+
+- *(ex2)* Rename AppendInt to AddElements
+
+### 📚 Documentation
+
+- *(ex1)* Add documentation
+- *(ex2)* Add documentation
 
 ### 🧪 Testing
 
 - *(ex1)* Add tests
+- *(ex2)* Add tests for generate slice function
 
 ### ⚙️ Miscellaneous Tasks
 
