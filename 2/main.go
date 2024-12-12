@@ -72,11 +72,24 @@ func AddElements(slice []int, elems ...int) []int {
 	return slice[:newLen]
 }
 
+func CopySlice(slice []int) []int {
+	result := make([]int, len(slice))
+	copy(result, slice)
+	
+	return result
+}
+
 func main() {
 	originalSlice := GenerateNewSlice(10)
 	slice := SliceExample(originalSlice)
 	fmt.Println("Original slice: ", originalSlice)
 	fmt.Println("Slice slice: ", slice)
-	add := AddElements(slice, 1, 2, 3, 4)
+	add := AddElements(originalSlice, 1, 2, 3, 4)
 	fmt.Println("Add: ", add)
+
+	copy := CopySlice(originalSlice)
+	originalSlice = AddElements(originalSlice, 1, 2, 321)
+	fmt.Println("Original slice: ", originalSlice)
+	fmt.Println("Copy slice: ", copy)
+
 }
