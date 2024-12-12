@@ -44,7 +44,7 @@ func SliceExample(slice []int) []int {
 	return evenSlice
 }
 
-// AppendInt appends multiple integers to the end of the slice, ensuring the slice has enough capacity.
+// AddElements appends multiple integers to the end of the slice, ensuring the slice has enough capacity.
 // If necessary, it creates a new slice with increased capacity to accommodate the new elements.
 //
 // Parameters:
@@ -53,7 +53,7 @@ func SliceExample(slice []int) []int {
 //
 // Returns:
 // - A new slice with the added integers.
-func AppendInt(slice []int, elems ...int) []int {
+func AddElements(slice []int, elems ...int) []int {
 	sliceLen := len(slice)
 	newLen := sliceLen + len(elems)
 
@@ -77,6 +77,6 @@ func main() {
 	slice := SliceExample(originalSlice)
 	fmt.Println("Original slice: ", originalSlice)
 	fmt.Println("Slice slice: ", slice)
-	add := AppendInt(slice, 1, 2, 3, 4)
+	add := AddElements(slice, 1, 2, 3, 4)
 	fmt.Println("Add: ", add)
 }
