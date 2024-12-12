@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"fmt"
 )
 
@@ -13,6 +14,8 @@ type Values struct {
 	isActive       bool
 	complexNum     complex64
 }
+
+const salt = "go-2024"
 
 func (v *Values) String() string {
 	return fmt.Sprintf(
@@ -49,6 +52,16 @@ func (v *Values) ValuesToRune() []rune {
 	return []rune(v.ValuesToString())
 }
 
+func (v *Values) HashWithSalt() string {
+	runes := v.ValuesToRune()
+	saltRune := []rune(salt)
+	halfLength := len(runes) / 2
+
+	runes = append(runes[:halfLength], append(saltRune, runes[halfLength:]...)...)
+	hash := sha256.Sum256([]byte(string(runes)))
+
+	return fmt.Sprintf("%X", hash)
+}
 
 func main() {
 	val := Values{
@@ -72,4 +85,8 @@ func main() {
 	for _, rr := range r {
 		fmt.Printf("%d,", rr)
 	}
+	println()
+	hash := val.HashWithSalt()
+
+	fmt.Println(hash)
 }
