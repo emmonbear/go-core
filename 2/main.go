@@ -72,6 +72,13 @@ func AddElements(slice []int, elems ...int) []int {
 	return slice[:newLen]
 }
 
+// CopySlice creates a copy of the provided slice.
+//
+// Parameters:
+// - slice: the original slice to copy
+//
+// Returns:
+// - A new slice that is a copy of the original
 func CopySlice(slice []int) []int {
 	result := make([]int, len(slice))
 	copy(result, slice)
@@ -79,6 +86,15 @@ func CopySlice(slice []int) []int {
 	return result
 }
 
+// RemoveElement removes an element from the slice at the specified index.
+// If the index is out of range, the original slice is returned.
+//
+// Parameters:
+// - slice: the original slice of integers
+// - index: the position of the element to remove
+//
+// Returns:
+// - A new slice with the specified element removed
 func RemoveElement(slice []int, index int) []int {
 	if index < 0 || index >= len(slice) {
 		return slice
@@ -102,5 +118,4 @@ func main() {
 
 	remove := RemoveElement(originalSlice, -1)
 	fmt.Println(remove)
-
 }
