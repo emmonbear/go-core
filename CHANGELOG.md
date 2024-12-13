@@ -13,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - *(ex2)* Add a function that generates a slice of a given size with arbitrary values
 - *(ex2)* Add a function that returns a new slice containing only even values
 - *(ex2)* Add your own implementation of the append function
+- *(ex2)* Add a function that copies the slice
+- *(ex2)* Add a function that deletes an item by index
+- *(ex3)* Add documentation
 
 ### 🐛 Bug Fixes
 
@@ -22,11 +25,15 @@ All notable changes to this project will be documented in this file.
 
 - *(ex1)* Add documentation
 - *(ex2)* Add documentation
+- *(ex2)* Add documentation
 
 ### 🧪 Testing
 
 - *(ex1)* Add tests
 - *(ex2)* Add tests for generate slice function
+- *(ex2)* Add tests for CopySlice
+- *(ex2)* Add tests for RemoveElements function
+- *(ex3)* Add tests for Add
 
 ### ⚙️ Miscellaneous Tasks
 
