@@ -75,15 +75,23 @@ func AddElements(slice []int, elems ...int) []int {
 func CopySlice(slice []int) []int {
 	result := make([]int, len(slice))
 	copy(result, slice)
-	
+
 	return result
+}
+
+func RemoveElement(slice []int, index int) []int {
+	if index < 0 || index >= len(slice) {
+		return slice
+	}
+
+	return append(slice[:index], slice[index+1:]...)
 }
 
 func main() {
 	originalSlice := GenerateNewSlice(10)
-	slice := SliceExample(originalSlice)
+	even := SliceExample(originalSlice)
 	fmt.Println("Original slice: ", originalSlice)
-	fmt.Println("Slice slice: ", slice)
+	fmt.Println("Even slice: ", even)
 	add := AddElements(originalSlice, 1, 2, 3, 4)
 	fmt.Println("Add: ", add)
 
@@ -91,5 +99,8 @@ func main() {
 	originalSlice = AddElements(originalSlice, 1, 2, 321)
 	fmt.Println("Original slice: ", originalSlice)
 	fmt.Println("Copy slice: ", copy)
+
+	remove := RemoveElement(originalSlice, -1)
+	fmt.Println(remove)
 
 }
