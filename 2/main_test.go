@@ -29,6 +29,13 @@ type copySliceTest struct {
 	expected []int
 }
 
+type removeElementTest struct {
+	name     string
+	slice    []int
+	index    int
+	expected []int
+}
+
 var addElementsTests = []addElementsTest{
 	{
 		name:     "test 1",
@@ -164,6 +171,40 @@ var copySliceTests = []copySliceTest{
 	},
 }
 
+var removeElementTests = []removeElementTest {
+	{
+		name: "test 1",
+		slice: []int{1, 2, 3, 4, 5, 6},
+		index: 0,
+		expected: []int{2, 3, 4, 5, 6},
+	},
+	{
+		name: "test 2",
+		slice: []int{1, 2, 3, 4, 5, 6},
+		index: 5,
+		expected: []int{1, 2, 3, 4, 5},
+	},
+	{
+		name: "index = len(slice)",
+		slice: []int{1, 2, 3, 4, 5, 6},
+		index: 6,
+		expected: []int{1, 2, 3, 4, 5, 6},
+	},
+	{
+		name: "index >",
+		slice: []int{1, 2, 3, 4, 5, 6},
+		index: -6,
+		expected: []int{1, 2, 3, 4, 5, 6},
+	},
+	{
+		name: "index > len(slice)",
+		slice: []int{1, 2, 3, 4, 5, 6},
+		index: -6,
+		expected: []int{1, 2, 3, 4, 5, 6},
+	},
+	
+}
+
 func TestAddElements(t *testing.T) {
 	for _, tt := range addElementsTests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -192,6 +233,14 @@ func TestCopySlice(t *testing.T) {
 	for _, tt := range copySliceTests {
 		t.Run(tt.name, func(t *testing.T) {
 			testCopySlice(t, tt)
+		})
+	}
+}
+
+func TestRemoveElement(t *testing.T) {
+	for _, tt := range removeElementTests {
+		t.Run(tt.name, func(t *testing.T) {
+			testRemoveElement(t, tt)
 		})
 	}
 }
@@ -237,5 +286,15 @@ func testCopySlice(t *testing.T, tt copySliceTest) {
 	tt.slice[0] = 999 // Modify the original slice
 	if reflect.DeepEqual(tt.slice, results) {
 		t.Fatalf("expected copy to remain unchanged, but it was modified")
+	}
+}
+
+func testRemoveElement(t *testing.T, tt removeElementTest) {
+	results := RemoveElement(tt.slice, tt.index)
+
+	for i, result := range results {
+		if result != tt.expected[i] {
+			t.Fatalf("expected %v, got %v", tt.expected[i], result)
+		}
 	}
 }
