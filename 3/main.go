@@ -39,6 +39,12 @@ func (m *StringIntMap) Exists(key string) bool {
 	return exists
 }
 
+func (m *StringIntMap) Get(key string) (int, bool) {
+	value, exists := m.data[key]
+
+	return value, exists
+}
+
 func main() {
 	m := NewStringIntMap()
 	m.Add("string 1", 1)
@@ -56,4 +62,9 @@ func main() {
 	exist :=m.Exists("string 4")
 
 	fmt.Println(exist)
+
+	get, ok := m.Get("string 3")
+	fmt.Println(get, ok)
+
+
 }
