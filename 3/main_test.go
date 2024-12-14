@@ -17,6 +17,12 @@ type removeTest struct {
 	expected    *StringIntMap
 }
 
+type copyTest struct {
+	name        string
+	mapInstance *StringIntMap
+	expected    *StringIntMap
+}
+
 var addTests = []addTest{
 	{
 		name:        "test 1",
@@ -149,6 +155,65 @@ var removeTests = []removeTest{
 	},
 }
 
+var copyTests = []copyTest{
+	{
+		name: "copy non-empty",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"string1": 1,
+				"string2": 2,
+				"string3": 3,
+			},
+		},
+		expected: &StringIntMap{
+			data: map[string]int{
+				"string1": 1,
+				"string2": 2,
+				"string3": 3,
+			},
+		},
+	},
+	{
+		name: "Copy empty map",
+		mapInstance: &StringIntMap{
+			data: map[string]int{},
+		},
+		expected: &StringIntMap{
+			data: map[string]int{},
+		},
+	},
+	{
+		name: "Copy map with one element",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 42,
+			},
+		},
+		expected: &StringIntMap{
+			data: map[string]int{
+				"key1": 42,
+			},
+		},
+	},
+	{
+		name: "Copy map with duplicate values",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 10,
+				"key2": 10,
+				"key3": 10,
+			},
+		},
+		expected: &StringIntMap{
+			data: map[string]int{
+				"key1": 10,
+				"key2": 10,
+				"key3": 10,
+			},
+		},
+	},
+}
+
 func TestAdd(t *testing.T) {
 	for _, tt := range addTests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -161,6 +226,14 @@ func TestRemove(t *testing.T) {
 	for _, tt := range removeTests {
 		t.Run(tt.name, func(t *testing.T) {
 			testRemove(t, tt)
+		})
+	}
+}
+
+func TestCopy(t *testing.T) {
+	for _, tt := range copyTests {
+		t.Run(tt.name, func(t *testing.T) {
+			testCopy(t, tt)
 		})
 	}
 }
@@ -180,7 +253,17 @@ func testRemove(t *testing.T, tt removeTest) {
 
 	for key, value := range tt.expected.data {
 		if got := tt.mapInstance.data[key]; got != value {
-			t.Errorf("Add() = %v, want %v", got, value)
+			t.Errorf("Remove() = %v, want %v", got, value)
+		}
+	}
+}
+
+func testCopy(t *testing.T, tt copyTest) {
+	result := tt.mapInstance.Copy()
+	tt.mapInstance.data["string1"] = 10
+	for key, value := range tt.expected.data {
+		if got := result[key]; got != value {
+			t.Errorf("Copy() = %v, want %v", got, value)
 		}
 	}
 }
