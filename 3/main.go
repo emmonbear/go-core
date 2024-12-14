@@ -33,6 +33,12 @@ func (m *StringIntMap) Copy() map[string]int {
 	return result
 }
 
+func (m *StringIntMap) Exists(key string) bool {
+	_, exists := m.data[key]
+
+	return exists
+}
+
 func main() {
 	m := NewStringIntMap()
 	m.Add("string 1", 1)
@@ -46,4 +52,8 @@ func main() {
 	m.Remove("string 3")
 	fmt.Println(m)
 	fmt.Println(copy)
+
+	exist :=m.Exists("string 4")
+
+	fmt.Println(exist)
 }
