@@ -171,38 +171,37 @@ var copySliceTests = []copySliceTest{
 	},
 }
 
-var removeElementTests = []removeElementTest {
+var removeElementTests = []removeElementTest{
 	{
-		name: "test 1",
-		slice: []int{1, 2, 3, 4, 5, 6},
-		index: 0,
+		name:     "test 1",
+		slice:    []int{1, 2, 3, 4, 5, 6},
+		index:    0,
 		expected: []int{2, 3, 4, 5, 6},
 	},
 	{
-		name: "test 2",
-		slice: []int{1, 2, 3, 4, 5, 6},
-		index: 5,
+		name:     "test 2",
+		slice:    []int{1, 2, 3, 4, 5, 6},
+		index:    5,
 		expected: []int{1, 2, 3, 4, 5},
 	},
 	{
-		name: "index = len(slice)",
-		slice: []int{1, 2, 3, 4, 5, 6},
-		index: 6,
+		name:     "index = len(slice)",
+		slice:    []int{1, 2, 3, 4, 5, 6},
+		index:    6,
 		expected: []int{1, 2, 3, 4, 5, 6},
 	},
 	{
-		name: "index >",
-		slice: []int{1, 2, 3, 4, 5, 6},
-		index: -6,
+		name:     "index >",
+		slice:    []int{1, 2, 3, 4, 5, 6},
+		index:    -6,
 		expected: []int{1, 2, 3, 4, 5, 6},
 	},
 	{
-		name: "index > len(slice)",
-		slice: []int{1, 2, 3, 4, 5, 6},
-		index: -6,
+		name:     "index > len(slice)",
+		slice:    []int{1, 2, 3, 4, 5, 6},
+		index:    -6,
 		expected: []int{1, 2, 3, 4, 5, 6},
 	},
-	
 }
 
 func TestAddElements(t *testing.T) {

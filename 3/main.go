@@ -31,14 +31,14 @@ func (m *StringIntMap) Copy() map[string]int {
 	}
 	result := make(map[string]int, len(m.data))
 
-	for key, value :=  range m.data {
+	for key, value := range m.data {
 		result[key] = value
 	}
 
 	return result
 }
 
-// Exists checks if the given key exists in the map. 
+// Exists checks if the given key exists in the map.
 // It returns true if the key is found, false otherwise.
 func (m *StringIntMap) Exists(key string) bool {
 	_, exists := m.data[key]
@@ -62,13 +62,13 @@ func main() {
 	m.Remove("string 1")
 
 	fmt.Println(m)
-	
+
 	copy := m.Copy()
 	m.Remove("string 3")
 	fmt.Println(m)
 	fmt.Println(copy)
 
-	exist :=m.Exists("string 4")
+	exist := m.Exists("string 4")
 
 	fmt.Println(exist)
 
