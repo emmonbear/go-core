@@ -16,6 +16,12 @@ All notable changes to this project will be documented in this file.
 - *(ex2)* Add a function that copies the slice
 - *(ex2)* Add a function that deletes an item by index
 - *(ex3)* Add documentation
+- *(ex3)* Add a method that deletes an item by key
+- *(ex3)* Add a method that returns a new map containing all elements of the current map
+- *(ex3)* Add a method that checks if the key exists in the map
+- *(ex3)* Add a method that returns a value by key and a boolean flag indicating the success of the operation
+- *(ex4)* Add a function that returns a slice of rows containing items that are in the first slice but missing from the second slice
+- *(ex5)* Add a function that checks if there are value intersections between two slides
 
 ### 🐛 Bug Fixes
 
@@ -26,6 +32,13 @@ All notable changes to this project will be documented in this file.
 - *(ex1)* Add documentation
 - *(ex2)* Add documentation
 - *(ex2)* Add documentation
+- *(ex3)* Add documentation
+- *(ex4)* Add documantation
+- *(ex5)* Add documentation
+
+### 🎨 Styling
+
+- *(ex3)* Format
 
 ### 🧪 Testing
 
@@ -34,6 +47,12 @@ All notable changes to this project will be documented in this file.
 - *(ex2)* Add tests for CopySlice
 - *(ex2)* Add tests for RemoveElements function
 - *(ex3)* Add tests for Add
+- *(ex3)* Add tests for the Remove method
+- *(ex3)* Add tests for the Copy method
+- *(ex3)* Add tests for Exists method
+- *(ex3)* Add tests for the Get method
+- *(ex4)* Add tests for Difference function
+- *(ex5)* Add tests for Compare function
 
 ### ⚙️ Miscellaneous Tasks
 
