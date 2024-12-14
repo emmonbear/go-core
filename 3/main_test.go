@@ -30,6 +30,14 @@ type existsTest struct {
 	expected    bool
 }
 
+type getTest struct {
+	name        string
+	key         string
+	mapInstance *StringIntMap
+	expected    int
+	exists      bool
+}
+
 var addTests = []addTest{
 	{
 		name:        "test 1",
@@ -286,6 +294,82 @@ var existsTests = []existsTest{
 	},
 }
 
+var getTests = []getTest{
+	{
+		name: "key exists",
+		key:  "key1",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+			},
+		},
+		expected: 2,
+		exists:   true,
+	},
+	{
+		name: "Key does not exist",
+		key:  "key5",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+			},
+		},
+		expected: 0,
+		exists:   false,
+	},
+	{
+		name: "Key exists with zero value",
+		key:  "key2",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 0,
+				"key3": 6,
+			},
+		},
+		expected: 0,
+		exists:   true,
+	},
+	{
+		name: "Empty map",
+		key:  "key1",
+		mapInstance: &StringIntMap{
+			data: map[string]int{},
+		},
+		expected: 0,
+		exists:   false,
+	},
+	{
+		name: "Check another key in non-empty map",
+		key:  "key3",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+			},
+		},
+		expected: 6,
+		exists:   true,
+	},
+	{
+		name: "Key does not exist but map has other keys",
+		key:  "key999",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+			},
+		},
+		expected: 0,
+		exists:   false,
+	},
+}
+
 func TestAdd(t *testing.T) {
 	for _, tt := range addTests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -314,6 +398,14 @@ func TestExists(t *testing.T) {
 	for _, tt := range existsTests {
 		t.Run(tt.name, func(t *testing.T) {
 			testExists(t, tt)
+		})
+	}
+}
+
+func TestGet(t *testing.T) {
+	for _, tt := range getTests {
+		t.Run(tt.name, func(t *testing.T) {
+			testGet(t, tt)
 		})
 	}
 }
@@ -352,5 +444,17 @@ func testExists(t *testing.T, tt existsTest) {
 	result := tt.mapInstance.Exists(tt.key)
 	if result != tt.expected {
 		t.Errorf("expected %t, got %t", tt.expected, result)
+	}
+}
+
+func testGet(t *testing.T, tt getTest) {
+	value, exists := tt.mapInstance.Get(tt.key)
+
+	if exists != tt.exists {
+		t.Errorf("expected %t, got %t", tt.exists, exists)
+	}
+
+	if value != tt.expected {
+		t.Errorf("expected %d, got %d", tt.expected, value)
 	}
 }
