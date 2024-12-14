@@ -23,6 +23,13 @@ type copyTest struct {
 	expected    *StringIntMap
 }
 
+type existsTest struct {
+	name        string
+	key         string
+	mapInstance *StringIntMap
+	expected    bool
+}
+
 var addTests = []addTest{
 	{
 		name:        "test 1",
@@ -214,6 +221,71 @@ var copyTests = []copyTest{
 	},
 }
 
+var existsTests = []existsTest{
+	{
+		name: "key exists",
+		key:  "key1",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+				"key4": 7,
+			},
+		},
+		expected: true,
+	},
+	{
+		name: "Key does not exist in map",
+		key:  "key5",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+				"key4": 7,
+			},
+		},
+		expected: false,
+	},
+	{
+		name: "Key does not exist in map",
+		key:  "key5",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+				"key4": 7,
+			},
+		},
+		expected: false,
+	},
+	{
+		name: "Key exists with value zero",
+		key:  "key1",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 0,
+				"key2": 4,
+			},
+		},
+		expected: true,
+	},
+	{
+		name: "Key does not exist but map has other keys",
+		key:  "key999",
+		mapInstance: &StringIntMap{
+			data: map[string]int{
+				"key1": 2,
+				"key2": 4,
+				"key3": 6,
+			},
+		},
+		expected: false,
+	},
+}
+
 func TestAdd(t *testing.T) {
 	for _, tt := range addTests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -234,6 +306,14 @@ func TestCopy(t *testing.T) {
 	for _, tt := range copyTests {
 		t.Run(tt.name, func(t *testing.T) {
 			testCopy(t, tt)
+		})
+	}
+}
+
+func TestExists(t *testing.T) {
+	for _, tt := range existsTests {
+		t.Run(tt.name, func(t *testing.T) {
+			testExists(t, tt)
 		})
 	}
 }
@@ -265,5 +345,12 @@ func testCopy(t *testing.T, tt copyTest) {
 		if got := result[key]; got != value {
 			t.Errorf("Copy() = %v, want %v", got, value)
 		}
+	}
+}
+
+func testExists(t *testing.T, tt existsTest) {
+	result := tt.mapInstance.Exists(tt.key)
+	if result != tt.expected {
+		t.Errorf("expected %t, got %t", tt.expected, result)
 	}
 }
