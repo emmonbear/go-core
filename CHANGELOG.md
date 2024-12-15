@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - *(ex3)* Add a method that returns a value by key and a boolean flag indicating the success of the operation
 - *(ex4)* Add a function that returns a slice of rows containing items that are in the first slice but missing from the second slice
 - *(ex5)* Add a function that checks if there are value intersections between two slides
+- *(ex6)* Add a random number generator
 
 ### 🐛 Bug Fixes
 
@@ -35,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - *(ex3)* Add documentation
 - *(ex4)* Add documantation
 - *(ex5)* Add documentation
+- *(ex6)* Add documentation
 
 ### 🎨 Styling
 
@@ -53,6 +55,7 @@ All notable changes to this project will be documented in this file.
 - *(ex3)* Add tests for the Get method
 - *(ex4)* Add tests for Difference function
 - *(ex5)* Add tests for Compare function
+- *(ex6)* Add tests for the generateRandomNumber func
 
 ### ⚙️ Miscellaneous Tasks
 
