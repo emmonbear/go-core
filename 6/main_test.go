@@ -37,7 +37,7 @@ func testGenerateRandomNumberTest(t *testing.T, tt generateRandomNumberTest) {
 	count := 0
 	for num := range ch {
 		count++
-		if num < -500 || num > 499 {
+		if num < minValue || num > maxValue {
 			t.Errorf("generated number %d is out of range", num)
 		}
 	}
