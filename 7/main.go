@@ -2,6 +2,9 @@ package main
 
 import "sync"
 
+// or merges multiple input channels into a single output channel.
+// Each value received from any of the input channels is sent to the output channel.
+// The function waits for all input channels to close before closing the output channel.
 func or[T any](channels ...<-chan T) <-chan T {
 	sink := make(chan T)
 

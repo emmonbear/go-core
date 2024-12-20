@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// counter generates a sequence of natural numbers (0 to count-1) and sends them on the out channel.
+// It then closes the out channel once all values are sent.
 func counter(out chan<- uint8, count int) {
 	for i := 0; i < count; i++ {
 		out <- (uint8(i))
@@ -9,6 +11,8 @@ func counter(out chan<- uint8, count int) {
 	close(out)
 }
 
+// cuber reads numbers from the in channel, cubes them, and sends the result on the out channel.
+// It closes the out channel once all values have been processed.
 func cuber(out chan<- float64, in <-chan uint8) {
 	for v := range in {
 		result := float64(v) * float64(v) * float64(v)
@@ -17,6 +21,7 @@ func cuber(out chan<- float64, in <-chan uint8) {
 	close(out)
 }
 
+// printer reads numbers from the in channel and prints them to the console.
 func printer(in <-chan float64) {
 	for v := range in {
 		fmt.Println(v)
