@@ -17,6 +17,9 @@ func NewCustomWaitGroup() *CustomWaitGroup {
 
 func (cwg *CustomWaitGroup) Add(delta int32) {
 	atomic.AddInt32(&cwg.count, delta)
+	if cwg.count < 0 {
+		panic("negative WaitGroup counter")
+	}
 	if atomic.LoadInt32(&cwg.count) == 0 {
 		close(cwg.ch)
 	}
