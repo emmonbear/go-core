@@ -9,13 +9,12 @@ func or(channels ...<-chan int) <-chan int {
 	wg.Add(len(channels))
 
 	for _, channel := range channels {
-		channel := channel
-		go func() {
+		go func(с <-chan int) {
 			defer wg.Done()
 			for  v := range channel {
 				sink <- v
 			}
-		}()
+		}(channel)
 	}
 
 	go func() {
