@@ -23,10 +23,19 @@ All notable changes to this project will be documented in this file.
 - *(ex4)* Add a function that returns a slice of rows containing items that are in the first slice but missing from the second slice
 - *(ex5)* Add a function that checks if there are value intersections between two slides
 - *(ex6)* Add a random number generator
+- *(ex6)* Add constants to define the range of generated values
+- *(ex7)* Add a program that merges N channels into one
+- *(ex9)* Add a conveyor
+- *(ex8)* Add custom wait group
+- *(ex7)* Add generics to the Or implementation to support any channel types
+- *(ex8)* Add panic when the counter is negative
 
 ### 🐛 Bug Fixes
 
 - *(ex2)* Rename AppendInt to AddElements
+- *(ex6)* Add the use of constants to tests
+- *(ex8)* Change the use of mutex to atomics
+- *(ex7)* Eliminate short circuits
 
 ### 📚 Documentation
 
@@ -37,10 +46,12 @@ All notable changes to this project will be documented in this file.
 - *(ex4)* Add documantation
 - *(ex5)* Add documentation
 - *(ex6)* Add documentation
+- *(ex7-9)* Add documentation
 
 ### 🎨 Styling
 
 - *(ex3)* Format
+- Fix style
 
 ### 🧪 Testing
 
@@ -56,6 +67,9 @@ All notable changes to this project will be documented in this file.
 - *(ex4)* Add tests for Difference function
 - *(ex5)* Add tests for Compare function
 - *(ex6)* Add tests for the generateRandomNumber func
+- *(ex7)* Add tests for Or function
+- *(ex8)* Add tests for CustomWaitGroup methods
+- *(ex9)* Add tests for the conveyor
 
 ### ⚙️ Miscellaneous Tasks
 
