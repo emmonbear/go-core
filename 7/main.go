@@ -2,16 +2,16 @@ package main
 
 import "sync"
 
-func or(channels ...<-chan int) <-chan int {
-	sink := make(chan int)
+func or[T any](channels ...<-chan T) <-chan T {
+	sink := make(chan T)
 
 	var wg sync.WaitGroup
 	wg.Add(len(channels))
 
 	for _, channel := range channels {
-		go func(с <-chan int) {
+		go func(с <-chan T) {
 			defer wg.Done()
-			for  v := range channel {
+			for v := range channel {
 				sink <- v
 			}
 		}(channel)
@@ -24,7 +24,6 @@ func or(channels ...<-chan int) <-chan int {
 
 	return sink
 }
-
 
 func main() {
 	ch1 := make(chan int)
